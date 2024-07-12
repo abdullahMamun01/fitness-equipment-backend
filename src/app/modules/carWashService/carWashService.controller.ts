@@ -47,9 +47,22 @@ const updateCarWashService = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+const deleteCarWashService = catchAsync(async (req: Request, res: Response) => {
+  const serviceId = req.params.serviceId;
+  const service = await CarWashService.deleteCarWashServiceFromDB(serviceId);
+  sendResponse(res, {
+    message: 'Service deleted successfully',
+    success: true,
+    statusCode: httpStatus.OK,
+    data: service,
+  });
+});
+
 export const CarWashServiceController = {
   createCarWashService,
   getAllCarWashServices,
   getCarWashServiceById,
   updateCarWashService,
+  deleteCarWashService
 };

@@ -38,9 +38,9 @@ export const verifyToken = async (token: string): Promise<JwtPayload> => {
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
     }
-    console.log(decoded ,' decode')
-    if ( user.role != decoded.role || user.email != decoded.email) {
-      console.log('hello')
+
+    if (  user.role != decoded.role || user.email != decoded.email ) {
+
       throw new AppError(httpStatus.UNAUTHORIZED, 'Unauthorized user');
     }
 

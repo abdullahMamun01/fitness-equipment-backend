@@ -2,7 +2,7 @@ import express from 'express';
 import { userController } from './user.controller';
 import { validateRequest } from '../../middleware/validateRequest';
 import userRegisterValidationSchema from './user.validation';
-import { z } from 'zod';
+
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post(
   '/signup',
-  validateRequest(userRegisterValidationSchema),
+  // validateRequest(userRegisterValidationSchema),
   userController.signupController,
 );
 

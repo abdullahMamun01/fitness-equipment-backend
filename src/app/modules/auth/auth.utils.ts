@@ -30,10 +30,19 @@ export const verifyToken = async (token: string): Promise<JwtPayload> => {
       token,
       config.accessTokenSecret as string,
     ) as JwtPayload ;
-
+    console.log(decoded)
     if (!decoded) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'Unauthorized user');
     }
+    //check token is expires or not
+    // const currentTimeInMs = Math.floor(new Date().getTime() / 1000 ) 
+    // const jwtExpiresInMs = decoded.exp as number
+    // if(currentTimeInMs > jwtExpiresInMs){
+
+    //   throw new AppError(httpStatus.UNAUTHORIZED , 'JWT token has expired. Please log in again.')
+    // }
+    // console.log(decoded , ' decode')
+
     const user = await findUserByEmail(decoded?.email);
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
@@ -46,6 +55,6 @@ export const verifyToken = async (token: string): Promise<JwtPayload> => {
 
     return decoded;
   } catch (error) {
-    throw new AppError(httpStatus.UNAUTHORIZED, 'Unauthorized user');
+    throw new AppError(httpStatus.UNAUTHORIZED, 'JWT token has expired. Please log in again.');
   }
 };

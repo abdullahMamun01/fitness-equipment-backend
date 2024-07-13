@@ -6,6 +6,7 @@ const CarWashServiceSchema = new Schema<TCarWashService>({
   name: {
     type: String,
     required: true,
+    unique:true
   },
   description: {
     type: String,

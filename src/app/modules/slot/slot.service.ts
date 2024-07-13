@@ -3,8 +3,16 @@ import AppError from '../../error/AppError';
 import { TSlot, TSlotQUery } from './slot.interface';
 import { SlotModel } from './slot.model';
 import { timeFormat } from './slot.utils';
+import { CarwashModel } from '../carWashService/carWashService.models';
 
 const createSlotIntoDb = async (payload: TSlot) => {
+  //check the service already deleted 
+  const service = await CarwashModel.findById(payload.service)
+  if (service?.isDeleted === true) {
+    throw new AppError(httpStatus.FORBIDDEN, 'The specified car wash service is not accessible because it is marked as deleted.');
+  }
+
+  
   //check the range already exist
   const conflictSlot = await SlotModel.find({
     service: payload.service,
@@ -14,11 +22,7 @@ const createSlotIntoDb = async (payload: TSlot) => {
       { endTime: { $gt: payload.startTime, $lte: payload.endTime } },
     ],
   });
-  /* 
 
-   if startTime <= newEndTime && newStartTime <= endTime
-  
-  */
   // console.log(conflictSlot)
   if (conflictSlot.length > 0) {
     throw new AppError(

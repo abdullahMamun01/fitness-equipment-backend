@@ -18,7 +18,7 @@ export const authoRization = (...requiredRole: TUserRole[]) => {
         const authorizedUser = await verifyToken(token)
  
         if(requiredRole && !requiredRole.includes(authorizedUser.role)){
-            throw new AppError(httpStatus.UNAUTHORIZED ,'UNAUTHORIZED user!')
+            throw new AppError(httpStatus.UNAUTHORIZED ,'You have no access to this route')
         }
 
         req.user = authorizedUser as JwtPayload;

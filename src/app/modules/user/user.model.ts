@@ -2,12 +2,14 @@ import { Schema, model } from 'mongoose';
 import { TUser } from './user.interface';
 import { hashedPassword } from './user.utils';
 
+
 // Create the Mongoose schema
 const userSchema = new Schema<TUser>(
   {
-    name: {
+    fullName : {
       type: String,
       required: true,
+
     },
     email: {
       type: String,
@@ -19,20 +21,14 @@ const userSchema = new Schema<TUser>(
       required: true,
       select: 0
     },
-    phone: {
-      type: String,
-      required: true,
-    },
+
     role: {
       type: String,
       enum: ['user', 'admin'],
       default: 'user',
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
+
   },
   {
     timestamps: true,
@@ -48,6 +44,9 @@ userSchema.post('save', function (doc, next) {
   doc.password = '';
   next();
 });
+
+
+
 
 // Create the Mongoose model
 const UserModel = model<TUser>('User', userSchema);

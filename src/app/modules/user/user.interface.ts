@@ -1,12 +1,25 @@
 import { USER_ROLE } from "./user.constants"
 
 export type TUser = {
-    name: string ,
+    fullName:string ,
     email: string ,
     password:string ,
-    phone: string ,
     role: 'user' | 'admin',
-    address: string 
+
+}
+
+type TAddress = {
+    street:string ,
+    billingAddress:string,
+    shippingAddress:string
+}
+export type TUpdateUser = {
+    address :TAddress ,
+    age:number ,
+    phone: string ,
+    city:string ,
+    country:string,
+    zipCode:string
 }
 
 export type TLogin = {

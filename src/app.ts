@@ -21,7 +21,7 @@ app.use(handleEmptyResponse);
 
 //root route
 app.get('/', (req: Request, res: Response) => {
-    res.status(200).send('Welcome to the Fitness equipment backend API');
+    res.status(200).json({message: 'Welcome to the Fitness equipment backend API'});
   });
 // application routes
 app.use('/api', router);

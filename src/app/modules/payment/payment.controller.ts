@@ -10,6 +10,7 @@ import stripe from "../../utils/stripe"
 
 const createStripeCheckoutSession = catchAsync(async (req: Request, res: Response) => {
     const items = req.body.products
+    
     const billingDetails = req.body.billingDetails
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],

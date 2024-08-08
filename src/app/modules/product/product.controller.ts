@@ -3,11 +3,25 @@ import { catchAsync } from "../../utils/catchAsync";
 import { productService } from "./product.service";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
+/* 
 
+api/products?page=3&limit=10
+*/
 
-
+// 
 const getAllProduct = catchAsync(async (req: Request, res: Response) => {
-    const productList = await productService.getAllProductFromDB()
+    const { page, limit, search, category, min, max } = req.query
+
+    const params = {
+        page: parseInt(page as string, 10) || undefined,
+        limit: parseInt(limit as string, 10) || undefined,
+        search: search as string || undefined,
+        min: parseFloat(min as string) || undefined,
+        max: parseFloat(max as string) || undefined,
+        category: category as string || undefined
+    };
+
+    const productList = await productService.getAllProductFromDB(params)
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
@@ -45,6 +59,8 @@ const deleteProduct = catchAsync(async (req: Request, res: Response) => {
     })
 })
 
+
+//related product request
 const getRelatedProduct = catchAsync(async (req: Request, res: Response) => {
     const productId = req.params.productId
     const productList = await productService.relatedProductFromDB(productId)

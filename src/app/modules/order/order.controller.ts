@@ -17,7 +17,7 @@ import { orderItems, parseBillingDetails } from "./order.utils";
 import { Payment } from "../payment/payment.interface";
 import { orderService } from "./order.service";
 import sendResponse from "../../utils/sendResponse";
-import { TOrder } from "./order.interface";
+import { TOrder, TOrderProduct } from "./order.interface";
 import { generateManualTxId } from "./order.validation";
 
 
@@ -83,11 +83,13 @@ const confirmOrderWithStripe = catchAsync(async (req: Request, res: Response) =>
 })
 
 
-
-const confirmManualOrder = catchAsync(async (req: Request, res: Response) => {
+//cod- cash on delivery
+const confirmCODOrder = catchAsync(async (req: Request, res: Response) => {
 
     const userId = req.user.userId
     const {orderList,shippingAddress} = req.body
+    const totalAmount = orderList.reduce((acc:number, order : TOrderProduct) =>Math.floor( order.price * order.quantity) + acc , 0 )
+
     const TXN  = generateManualTxId(userId)
     const paymentInfo: Payment = {
         userId,
@@ -102,7 +104,7 @@ const confirmManualOrder = catchAsync(async (req: Request, res: Response) => {
     const orderInfo: TOrder = {
         userId,
         products: orderList,
-        totalAmount: 200,
+        totalAmount,
         shippingAddress: shippingAddress,
         status: 'Pending',
         deliveryTime: 'within 5 days',
@@ -110,7 +112,7 @@ const confirmManualOrder = catchAsync(async (req: Request, res: Response) => {
         paymentInfo: {
             method: 'Manual',
             transactionId: TXN,
-            totalAmount: 200,
+            totalAmount: totalAmount,
             status: 'Pending'
         }
     }
@@ -127,8 +129,31 @@ const confirmManualOrder = catchAsync(async (req: Request, res: Response) => {
 
 })
 
+const userOrderList = catchAsync(async (req: Request, res: Response) => {
+    const orderList = await orderService.getSingleOrderListFromDB(req.user.userId)
+    sendResponse(res , {
+        success:true ,
+        statusCode: httpStatus.OK ,
+        message:'order Retrieved successfully',
+        data:orderList
+    })
+})
+
+const orderList = catchAsync(async (req: Request, res: Response)=> {
+    const orderList = await orderService.orderListFormDB()
+
+    sendResponse(res , {
+        success:true ,
+        statusCode: httpStatus.OK ,
+        message:'order Retrieved successfully',
+        data:orderList
+    }) 
+} )
+
 
 export const orderController = {
     confirmOrderWithStripe,
-    confirmManualOrder
+    confirmCODOrder,
+    userOrderList,
+    orderList
 }

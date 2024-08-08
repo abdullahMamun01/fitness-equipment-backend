@@ -15,6 +15,5 @@ export default {
   stipe_public_key : process.env.STRIPE_PUBLIC_KEY,
   client_public_domain : process.env.CLIENT_PUBLIC_DOMAIN
 
-
 };
 

@@ -31,3 +31,11 @@ export type TReview = {
 
 }
 
+export type TProductsParams =  {
+  page?: number;
+  limit?: number;
+  search?: string;
+  min?: number;
+  max?: number;
+  category?: string;
+}

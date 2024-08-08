@@ -9,7 +9,7 @@ export type TAddress = {
     country :string
 }
 
-type TPayment  = {
+export type TPayment  = {
     method: string;
     transactionId: string;
     totalAmount: number;
@@ -20,7 +20,7 @@ export type TOrderProduct = {
     name: string ,
     productId : Schema.Types.ObjectId ,
     quantity:number ,
-    totalPrice: number
+    price: number
 }
 
 export type TOrder = {

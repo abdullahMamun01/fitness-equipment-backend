@@ -1,8 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
-import { TOrder } from './order.interface';
+import { TAddress, TOrder, TOrderProduct, TPayment } from './order.interface';
+
 
 // Address Schema
-const AddressSchema = new Schema({
+const AddressSchema = new Schema<TAddress>({
   street: { type: String, required: true },
   phone: { type: String, required: true },
   city: { type: String, required: true },
@@ -11,7 +12,7 @@ const AddressSchema = new Schema({
 });
 
 // Payment Schema
-const PaymentSchema = new Schema({
+const PaymentSchema = new Schema<TPayment>({
   method: { type: String, required: true },
   transactionId: { type: String, required: true },
   totalAmount: { type: Number, required: true },
@@ -19,11 +20,11 @@ const PaymentSchema = new Schema({
 });
 
 // Product Schema
-const ProductSchema = new Schema({
+const ProductSchema = new Schema<TOrderProduct>({
   name: { type: String, required: true },
   productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
   quantity: { type: Number, required: true },
-  totalPrice: { type: Number, required: true }
+  price: { type: Number, required: true }
 });
 
 // Order Schema

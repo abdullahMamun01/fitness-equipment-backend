@@ -3,7 +3,7 @@ import { USER_ROLE } from "../user/user.constants";
 import { authoRization } from "../../middleware/authoRization";
 import { paymentController } from "./payment.controller";
 import { validateRequest } from "../../middleware/validateRequest";
-import { paymentValidationSchema } from "./payment.vlidation";
+import { paymentValidationSchema } from "./payment.validation";
 
 /* 
 api/payments/stripe

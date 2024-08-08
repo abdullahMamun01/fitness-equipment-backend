@@ -25,6 +25,8 @@ const ProductSchema = new Schema<TProduct>({
     color: { type: String },
     manufacturer: { type: String },
     releaseDate: { type: Date }
+  }, {
+    timestamps:true
   });
   
   const ProductModel = mongoose.model<TProduct>('Product', ProductSchema);

@@ -24,7 +24,7 @@ const TAddressSchema = z.object({
       message: 'Invalid productId format',
     }), // Use a refinement to validate ObjectId format
     quantity: z.number().int().positive('Quantity must be a positive integer'),
-    totalPrice: z.number().nonnegative('Total price must be a non-negative number'),
+    price: z.number().nonnegative('Total price must be a non-negative number'),
   });
   
   // Define the combined schema

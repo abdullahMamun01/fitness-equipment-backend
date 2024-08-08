@@ -10,7 +10,7 @@ export type Product = {
 }
 
 
-export type TPayment ={
+export type PaymentDetails  ={
     products: Product[],
     billingDetails : TAddress
 }

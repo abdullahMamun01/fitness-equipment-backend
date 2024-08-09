@@ -1,0 +1,392 @@
+[
+  {
+    "name": "Adjustable Dumbbell Set",
+    "description": "A versatile set of adjustable dumbbells with weights ranging from 5 to 50 lbs.",
+    "price": 299.99,
+    "category": "Dumbbells",
+    "brand": "FitPro",
+    "img": "fitness-equipment/nom4nnytmif8baw8ozky",
+    "images": [
+      "fitness-equipment/nom4nnytmif8baw8ozky",
+      "fitness-equipment/bytpgejxegjv5rkffor5",
+      "fitness-equipment/pxqv7dewklnd6aqfflw7"
+    ],
+    "stock": 50,
+    "sku": "DPB123",
+    "tags": ["dumbbell", "adjustable", "weight"],
+    "discountedPrice": 269.99,
+    "stockStatus": "inStock",
+    "weight": 20,
+    "dimensions": {
+      "length": 30,
+      "width": 15,
+      "height": 10
+    },
+    "material": "Cast Iron",
+    "color": "Black",
+    "manufacturer": "FitPro Inc.",
+    "releaseDate": "2024-01-15T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Yoga Mat",
+    "description": "A high-quality, non-slip yoga mat for comfort and stability during your workout.",
+    "price": 49.99,
+    "category": "Yoga",
+    "brand": "ZenYoga",
+    "img": "fitness-equipment/mqsplbsklvzupiozdx0j",
+    "images": [
+      "fitness-equipment/mqsplbsklvzupiozdx0j",
+      "fitness-equipment/isb94vcrcspeyi6bolha",
+      "fitness-equipment/hxxl3woek3hwykvlulxf"
+    ],
+    "stock": 150,
+    "sku": "YM2024",
+    "tags": ["yoga", "mat", "non-slip"],
+    "discountedPrice": 39.99,
+    "stockStatus": "inStock",
+    "weight": 1.5,
+    "dimensions": {
+      "length": 183,
+      "width": 61,
+      "height": 0.6
+    },
+    "material": "PVC",
+    "color": "Purple",
+    "manufacturer": "ZenYoga Ltd.",
+    "releaseDate": "2023-11-10T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Treadmill Pro 3000",
+    "description": "Advanced treadmill with various workout programs and adjustable incline.",
+    "price": 899.99,
+    "category": "Cardio Equipment",
+    "brand": "RunFast",
+    "img": "fitness-equipment/clrmzp8ren7sph5qudos",
+    "images": [
+      "fitness-equipment/clrmzp8ren7sph5qudos",
+      "fitness-equipment/hgwfdu3vsaulgxzl7kao",
+      "fitness-equipment/flgwlh12ujyqwl2tip0i"
+    ],
+    "stock": 25,
+    "sku": "TP3000",
+    "tags": ["treadmill", "cardio", "adjustable"],
+    "discountedPrice": 799.99,
+    "stockStatus": "inStock",
+    "weight": 100,
+    "dimensions": {
+      "length": 200,
+      "width": 80,
+      "height": 140
+    },
+    "material": "Steel",
+    "color": "Gray",
+    "manufacturer": "RunFast Inc.",
+    "releaseDate": "2024-02-10T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Resistance Bands Set",
+    "description": "Set of 5 resistance bands with varying levels of tension for a full-body workout.",
+    "price": 69.99,
+    "category": "Resistance Bands",
+    "brand": "PowerBand",
+    "img": "fitness-equipment/goaghoutf13ybwuzatsg",
+    "images": [
+      "fitness-equipment/goaghoutf13ybwuzatsg",
+      "fitness-equipment/up71zsicztfx9sgayjyp",
+      "fitness-equipment/i7wfjpfkek9md4v6umyr"
+    ],
+    "stock": 75,
+    "sku": "RBSET2024",
+    "tags": ["resistance", "bands", "workout"],
+    "discountedPrice": 59.99,
+    "stockStatus": "inStock",
+    "weight": 0.8,
+    "dimensions": {
+      "length": 30,
+      "width": 2,
+      "height": 0.2
+    },
+    "material": "Latex",
+    "color": "Assorted",
+    "manufacturer": "PowerBand Co.",
+    "releaseDate": "2024-03-01T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Kettlebell 20kg",
+    "description": "20kg kettlebell ideal for strength training and conditioning.",
+    "price": 89.99,
+    "category": "Kettlebells",
+    "brand": "StrengthPro",
+    "img": "fitness-equipment/gy8zwhroy95yhjgq4dsj",
+    "images": [
+      "fitness-equipment/gy8zwhroy95yhjgq4dsj",
+      "fitness-equipment/rqatbfoqbmjxec5ygmy1",
+      "fitness-equipment/d3ho78waqrlnyrf3bnxx"
+    ],
+    "stock": 40,
+    "sku": "KB20KG",
+    "tags": ["kettlebell", "strength", "training"],
+    "discountedPrice": 79.99,
+    "stockStatus": "inStock",
+    "weight": 20,
+    "dimensions": {
+      "length": 20,
+      "width": 20,
+      "height": 30
+    },
+    "material": "Cast Iron",
+    "color": "Black",
+    "manufacturer": "StrengthPro Ltd.",
+    "releaseDate": "2024-04-05T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Pull-Up Bar",
+    "description": "Durable pull-up bar for home gym use, easy to install and adjust.",
+    "price": 59.99,
+    "category": "Strength Training",
+    "brand": "GymMaster",
+    "img": "fitness-equipment/fx4aususa7yknrfrjwdf",
+    "images": [
+      "fitness-equipment/fx4aususa7yknrfrjwdf",
+      "fitness-equipment/yg9a89uawurxtwnwsuzd",
+      "fitness-equipment/kiaugv4mem5nvfvozvjx"
+    ],
+    "stock": 60,
+    "sku": "PUB2024",
+    "tags": ["pull-up", "bar", "home gym"],
+    "discountedPrice": 49.99,
+    "stockStatus": "inStock",
+    "weight": 5,
+    "dimensions": {
+      "length": 100,
+      "width": 10,
+      "height": 20
+    },
+    "material": "Steel",
+    "color": "Silver",
+    "manufacturer": "GymMaster Co.",
+    "releaseDate": "2024-05-10T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Ab Roller",
+    "description": "Compact and effective ab roller for core strengthening exercises.",
+    "price": 29.99,
+    "category": "Core Equipment",
+    "brand": "CoreFit",
+    "img": "fitness-equipment/i9lfie9et7bk5wiricjq",
+    "images": [
+      "fitness-equipment/i9lfie9et7bk5wiricjq",
+      "fitness-equipment/oe8tqr3xoomiwjmfasdd",
+      "fitness-equipment/zfwqby7rsux922doiil1"
+    ],
+    "stock": 100,
+    "sku": "ABR2024",
+    "tags": ["ab roller", "core", "strengthening"],
+    "discountedPrice": 24.99,
+    "stockStatus": "inStock",
+    "weight": 1,
+    "dimensions": {
+      "length": 15,
+      "width": 10,
+      "height": 5
+    },
+    "material": "Plastic, Foam",
+    "color": "Black/Red",
+    "manufacturer": "CoreFit Inc.",
+    "releaseDate": "2024-06-20T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Medicine Ball 8kg",
+    "description": "Durable 8kg medicine ball for strength training and rehabilitation exercises.",
+    "price": 39.99,
+    "category": "Medicine Balls",
+    "brand": "PowerTrain",
+    "img": "fitness-equipment/jmub08yyjkvozbvbmgkj",
+    "images": [
+      "fitness-equipment/jmub08yyjkvozbvbmgkj",
+      "fitness-equipment/b2vizllwxeipenzztmbz",
+      "fitness-equipment/cmqt352ia15rxek8t60d"
+    ],
+    "stock": 80,
+    "sku": "MB8KG",
+    "tags": ["medicine ball", "strength", "rehab"],
+    "discountedPrice": 34.99,
+    "stockStatus": "inStock",
+    "weight": 8,
+    "dimensions": {
+      "length": 25,
+      "width": 25,
+      "height": 25
+    },
+    "material": "Rubber",
+    "color": "Blue",
+    "manufacturer": "PowerTrain LLC",
+    "releaseDate": "2024-07-15T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Spin Bike",
+    "description": "High-quality spin bike with adjustable resistance and built-in heart rate monitor.",
+    "price": 499.99,
+    "category": "Cardio Equipment",
+    "brand": "CyclePro",
+    "img": "fitness-equipment/jxxdbfnzhe5fkzy8nqng",
+    "images": [
+      "fitness-equipment/jxxdbfnzhe5fkzy8nqng",
+      "fitness-equipment/l9sufhfgxumofiozuesv",
+      "fitness-equipment/rpgitcmnehbmt4mguvpb"
+    ],
+    "stock": 20,
+    "sku": "SB2024",
+    "tags": ["spin bike", "cardio", "monitor"],
+    "discountedPrice": 449.99,
+    "stockStatus": "inStock",
+    "weight": 60,
+    "dimensions": {
+      "length": 120,
+      "width": 60,
+      "height": 110
+    },
+    "material": "Steel, Plastic",
+    "color": "Black",
+    "manufacturer": "CyclePro Ltd.",
+    "releaseDate": "2024-08-01T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Foam Roller",
+    "description": "Medium-density foam roller for muscle recovery and flexibility.",
+    "price": 24.99,
+    "category": "Recovery Tools",
+    "brand": "StretchMax",
+    "img": "fitness-equipment/ujxkjypm7uezjo8bajrp",
+    "images": [
+      "fitness-equipment/ujxkjypm7uezjo8bajrp",
+      "fitness-equipment/sxocsz9wmpz3yeeitmja",
+      "fitness-equipment/wxc79pmn0tke9pepaa8i"
+    ],
+    "stock": 90,
+    "sku": "FR2024",
+    "tags": ["foam roller", "recovery", "flexibility"],
+    "discountedPrice": 19.99,
+    "stockStatus": "inStock",
+    "weight": 0.5,
+    "dimensions": {
+      "length": 30,
+      "width": 15,
+      "height": 15
+    },
+    "material": "EVA Foam",
+    "color": "Gray",
+    "manufacturer": "StretchMax Corp.",
+    "releaseDate": "2024-06-01T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Barbell Set 150kg",
+    "description": "Complete barbell set with 150kg of weight plates and a high-strength bar.",
+    "price": 399.99,
+    "category": "Barbells",
+    "brand": "IronLift",
+    "img": "fitness-equipment/jmub08yyjkvozbvbmgkj",
+    "images": [
+      "fitness-equipment/jmub08yyjkvozbvbmgkj",
+      "fitness-equipment/b2vizllwxeipenzztmbz",
+      "fitness-equipment/cmqt352ia15rxek8t60d"
+    ],
+    "stock": 15,
+    "sku": "BS150KG",
+    "tags": ["barbell", "weights", "set"],
+    "discountedPrice": 359.99,
+    "stockStatus": "inStock",
+    "weight": 150,
+    "dimensions": {
+      "length": 200,
+      "width": 40,
+      "height": 40
+    },
+    "material": "Steel, Rubber",
+    "color": "Black",
+    "manufacturer": "IronLift Ltd.",
+    "releaseDate": "2024-07-20T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Adjustable Bench",
+    "description": "Multi-position adjustable bench suitable for a variety of exercises.",
+    "price": 179.99,
+    "category": "Benches",
+    "brand": "FitnessFlex",
+    "img": "fitness-equipment/ujxkjypm7uezjo8bajrp",
+    "images": [
+      "fitness-equipment/ujxkjypm7uezjo8bajrp",
+      "fitness-equipment/sxocsz9wmpz3yeeitmja",
+      "fitness-equipment/wxc79pmn0tke9pepaa8i"
+    ],
+    "stock": 30,
+    "sku": "AB2024",
+    "tags": ["bench", "adjustable", "exercise"],
+    "discountedPrice": 159.99,
+    "stockStatus": "inStock",
+    "weight": 25,
+    "dimensions": {
+      "length": 130,
+      "width": 45,
+      "height": 45
+    },
+    "material": "Steel, Foam",
+    "color": "Black",
+    "manufacturer": "FitnessFlex Inc.",
+    "releaseDate": "2024-08-05T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  },
+  {
+    "name": "Jump Rope",
+    "description": "Adjustable jump rope with ergonomic handles for cardio workouts.",
+    "price": 14.99,
+    "category": "Cardio Accessories",
+    "brand": "FitJump",
+    "img": "fitness-equipment/nom4nnytmif8baw8ozky",
+    "images": [
+      "fitness-equipment/nom4nnytmif8baw8ozky",
+      "fitness-equipment/bytpgejxegjv5rkffor5",
+      "fitness-equipment/pxqv7dewklnd6aqfflw7"
+    ],
+    "stock": 200,
+    "sku": "JR2024",
+    "tags": ["jump rope", "cardio", "workout"],
+    "discountedPrice": 12.99,
+    "stockStatus": "inStock",
+    "weight": 0.3,
+    "dimensions": {
+      "length": 300,
+      "width": 2,
+      "height": 2
+    },
+    "material": "Plastic, Steel",
+    "color": "Red",
+    "manufacturer": "FitJump Ltd.",
+    "releaseDate": "2024-05-15T00:00:00.000Z",
+    "createdAt": "2024-08-08T00:00:00.000Z",
+    "updatedAt": "2024-08-08T00:00:00.000Z"
+  }
+]

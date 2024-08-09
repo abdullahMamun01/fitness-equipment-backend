@@ -57,6 +57,14 @@ const getAllProductFromDB = async (
     return products;
 };
 
+const singleProductFormDB = async (productId:string )=> {
+    const product = await ProductModel.findById(productId)
+    if(!product){
+        throw new AppError(httpStatus.NOT_FOUND , 'Product not found')
+    }
+    return product
+}
+
 //update product into db
 const updateProductIntoDB = async (
     productId: string,
@@ -108,8 +116,10 @@ const relatedProductFromDB = async (productId: string) => {
 
 export const productService = {
     addProductIntoDB,
+    singleProductFormDB,
     getAllProductFromDB,
     updateProductIntoDB,
     deleteProductIntoDB,
     relatedProductFromDB,
+
 };

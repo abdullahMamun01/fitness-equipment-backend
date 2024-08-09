@@ -30,6 +30,16 @@ const getAllProduct = catchAsync(async (req: Request, res: Response) => {
 })
 
 
+const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
+    const productId = req.params.productId
+    const productList = await productService.singleProductFormDB(productId)
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.CREATED,
+        data: productList
+    })
+})
+
 const addProduct = catchAsync(async (req: Request, res: Response) => {
     const productList = await productService.addProductIntoDB(req.body)
     sendResponse(res, {
@@ -74,6 +84,7 @@ const getRelatedProduct = catchAsync(async (req: Request, res: Response) => {
 
 export const productController = {
     getAllProduct,
+    getSingleProduct,
     addProduct,
     updateProduct,
     deleteProduct,

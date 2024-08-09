@@ -10,7 +10,7 @@ const router = Router()
 
 
 router.get('/', productController.getAllProduct)
-router.get('/:productId', productController.getAllProduct)
+router.get('/:productId', productController.getSingleProduct)
 
 router.get('/:productId/related', productController.getRelatedProduct)
 router.post('/', validateRequest(ProductValidationSchema), authoRization(USER_ROLE.admin), productController.addProduct)

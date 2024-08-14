@@ -2,6 +2,8 @@ import { Schema } from "mongoose"
 
 
 export type TAddress = {
+    firstName:string ,
+    lastName:string,
     street:string ,
     phone: string ,
     city:string ,

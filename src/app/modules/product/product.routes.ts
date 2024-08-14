@@ -10,9 +10,11 @@ const router = Router()
 
 
 router.get('/', productController.getAllProduct)
+router.get('/categories', productController.getProductCategoriesList)
+router.get('/:productId/related-products', productController.getRelatedProduct)
+
 router.get('/:productId', productController.getSingleProduct)
 
-router.get('/:productId/related', productController.getRelatedProduct)
 router.post('/', validateRequest(ProductValidationSchema), authoRization(USER_ROLE.admin), productController.addProduct)
 router.patch('/:productId', validateRequest(ProductValidationSchema.partial()), authoRization(USER_ROLE.admin), productController.updateProduct)
 router.delete('/:productId', authoRization(USER_ROLE.admin), productController.deleteProduct)

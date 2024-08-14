@@ -20,7 +20,7 @@ const getAllProductFromDB = async (
         search = "",
         min = 0,
         max = MAX_PRICE,  // Arbitrary large number
-        category = ''
+        category
     }: TProductsParams
 ) => {
     if (page < 1)
@@ -48,7 +48,7 @@ const getAllProductFromDB = async (
                 { category: { $regex: lowerCaseQuery, $options: 'i' } }
             ]
         }),
-        ...(category && { category })
+        ...( category && category.length > 0 && { category: { $in: category } })
     };
 
 
@@ -57,10 +57,10 @@ const getAllProductFromDB = async (
     return products;
 };
 
-const singleProductFormDB = async (productId:string )=> {
+const singleProductFormDB = async (productId: string) => {
     const product = await ProductModel.findById(productId)
-    if(!product){
-        throw new AppError(httpStatus.NOT_FOUND , 'Product not found')
+    if (!product) {
+        throw new AppError(httpStatus.NOT_FOUND, 'Product not found')
     }
     return product
 }
@@ -114,6 +114,25 @@ const relatedProductFromDB = async (productId: string) => {
     return products;
 };
 
+const getCategoriesListFromDB = async () => {
+    const categories = await ProductModel.aggregate([
+        {
+            //step 1 : counting category
+            $group: {
+                _id: "$category",
+                count: {
+                    $sum: 1,
+                },
+                categoryName: { $first: "$category" },
+            },
+        },
+        {$sort: {count:-1}}
+    ])
+
+    return categories
+}
+
+
 export const productService = {
     addProductIntoDB,
     singleProductFormDB,
@@ -121,5 +140,6 @@ export const productService = {
     updateProductIntoDB,
     deleteProductIntoDB,
     relatedProductFromDB,
+    getCategoriesListFromDB
 
 };

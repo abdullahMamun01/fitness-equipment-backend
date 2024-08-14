@@ -11,14 +11,14 @@ api/products?page=3&limit=10
 // 
 const getAllProduct = catchAsync(async (req: Request, res: Response) => {
     const { page, limit, search, category, min, max } = req.query
-
+    const categoryArray = typeof category === 'string' ? category.split('|') : [];
     const params = {
         page: parseInt(page as string, 10) || undefined,
         limit: parseInt(limit as string, 10) || undefined,
         search: search as string || undefined,
         min: parseFloat(min as string) || undefined,
         max: parseFloat(max as string) || undefined,
-        category: category as string || undefined
+        category: categoryArray.length > 0 ? categoryArray : undefined
     };
 
     const productList = await productService.getAllProductFromDB(params)
@@ -35,7 +35,7 @@ const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
     const productList = await productService.singleProductFormDB(productId)
     sendResponse(res, {
         success: true,
-        statusCode: httpStatus.CREATED,
+        statusCode: httpStatus.OK,
         data: productList
     })
 })
@@ -82,11 +82,23 @@ const getRelatedProduct = catchAsync(async (req: Request, res: Response) => {
 })
 
 
+const getProductCategoriesList = catchAsync(async (req: Request, res: Response) => {
+
+    const categoryList = await productService.getCategoriesListFromDB()
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        data: categoryList
+    })
+})
+
+
 export const productController = {
     getAllProduct,
     getSingleProduct,
     addProduct,
     updateProduct,
     deleteProduct,
-    getRelatedProduct
+    getRelatedProduct,
+    getProductCategoriesList
 }

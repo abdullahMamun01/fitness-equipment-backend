@@ -37,5 +37,5 @@ export type TProductsParams =  {
   search?: string;
   min?: number;
   max?: number;
-  category?: string;
+  category?: string[];
 }

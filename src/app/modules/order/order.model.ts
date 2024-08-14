@@ -4,6 +4,8 @@ import { TAddress, TOrder, TOrderProduct, TPayment } from './order.interface';
 
 // Address Schema
 const AddressSchema = new Schema<TAddress>({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
   street: { type: String, required: true },
   phone: { type: String, required: true },
   city: { type: String, required: true },

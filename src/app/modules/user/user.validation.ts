@@ -22,9 +22,8 @@ const userRegisterValidationSchema = z.object({
     }).min(6, "Password must be at least 6 characters long"), // You can add more constraints as needed
 
     role: z.enum(['user', 'admin'], {
-      required_error: "Role is required",
       invalid_type_error: "Role must be 'user' or 'admin'",
-    }),
+    }).optional(),
 
     isActive: z.boolean({
       invalid_type_error: "IsActive must be a boolean",

@@ -11,7 +11,7 @@ export const authoRization = (...requiredRole: TUserRole[]) => {
     const authHeader = req.headers.authorization;
 
     const token = authHeader?.split(' ')[1];
-    
+
     if (!token) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'UNAUTHORIZED user!');
     }

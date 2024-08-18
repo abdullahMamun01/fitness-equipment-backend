@@ -1,4 +1,4 @@
-import { Schema } from "mongoose"
+import {  Types } from "mongoose"
 
 
 export type TAddress = {
@@ -19,14 +19,13 @@ export type TPayment  = {
 }
 
 export type TOrderProduct = {
-    name: string ,
-    productId : Schema.Types.ObjectId ,
+    productId : Types.ObjectId ,
     quantity:number ,
     price: number
 }
 
 export type TOrder = {
-    userId : Schema.Types.ObjectId ,
+    userId :Types.ObjectId,
     products: TOrderProduct[] ,
     totalAmount : number ,
     paymentInfo: TPayment,

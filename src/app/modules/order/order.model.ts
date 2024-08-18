@@ -23,7 +23,6 @@ const PaymentSchema = new Schema<TPayment>({
 
 // Product Schema
 const ProductSchema = new Schema<TOrderProduct>({
-  name: { type: String, required: true },
   productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
   quantity: { type: Number, required: true },
   price: { type: Number, required: true }

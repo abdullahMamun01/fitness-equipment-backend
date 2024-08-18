@@ -8,7 +8,7 @@ import { handleZodError } from '../error/handleZodError';
 import { handleValidationError } from '../error/handleValidationError';
 import handleCastError from '../error/handleCastError';
 import handleDuplicateError from '../error/handleDuplicateError';
-
+import { Stripe } from 'stripe';
 /*  */
 
 export const globalErrorHandler: ErrorRequestHandler = (
@@ -59,6 +59,16 @@ export const globalErrorHandler: ErrorRequestHandler = (
     message = simplifiedError?.message;
     errorSources = simplifiedError?.errorSources;
 
+  }else if (err instanceof ( Stripe.errors.StripeError)) {
+    statusCode = err.statusCode || 400; 
+
+    message = err.message;
+    errorSources = [
+      {
+        path: err.param || 'Stripe', // `param` provides the name of the invalid parameter
+        message: err.message,
+      },
+    ];
   }
 
   return res.status(statusCode).json({

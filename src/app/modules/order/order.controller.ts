@@ -1,19 +1,10 @@
-/* 
-body: {
-userId,
-sessionI
-
-}
-/api/order/confirm
-*/
-
 import { Request, Response } from "express";
 import { catchAsync } from "../../utils/catchAsync";
 import stripe from "../../utils/stripe";
 import AppError from "../../error/AppError";
 import httpStatus from "http-status";
 import Stripe from "stripe";
-import { orderItems, parseBillingDetails } from "./order.utils";
+import {   parseStripeMetaData, stripeOrders } from "./order.utils";
 import { Payment } from "../payment/payment.interface";
 import { orderService } from "./order.service";
 import sendResponse from "../../utils/sendResponse";
@@ -34,7 +25,7 @@ const confirmOrderWithStripe = catchAsync(async (req: Request, res: Response) =>
     if (!checkoutSession) {
         throw new AppError(httpStatus.BAD_REQUEST, 'session id not found or expired')
     }
-
+   
     const payment_intent = checkoutSession.payment_intent as Stripe.PaymentIntent
     const line_items = checkoutSession.line_items
 
@@ -42,7 +33,10 @@ const confirmOrderWithStripe = catchAsync(async (req: Request, res: Response) =>
         throw new AppError(httpStatus.BAD_REQUEST, 'Invalid session_id')
     }
     const payment_intent_id = payment_intent.id
-    const orderList = await orderItems(line_items)
+    const parseMetadata = parseStripeMetaData(checkoutSession.metadata)
+    const orderItems = stripeOrders(line_items , parseMetadata.productIds) 
+    const billingDetails = parseMetadata.billingDetails
+
 
     const paymentInfo: Payment = {
         userId,
@@ -54,28 +48,33 @@ const confirmOrderWithStripe = catchAsync(async (req: Request, res: Response) =>
         paymentDate: new Date(Date.now())
     }
 
+
     const orderInfo: TOrder = {
         userId,
-        products: orderList,
-        totalAmount: payment_intent.amount,
-        shippingAddress: parseBillingDetails(checkoutSession.metadata),
+        products: orderItems,
+        totalAmount: payment_intent.amount / 100,
+        shippingAddress: billingDetails,
         status: 'Processing',
         deliveryTime: 'within 5 days',
         orderDate: new Date(Date.now()),
         paymentInfo: {
             method: 'stripe',
             transactionId: payment_intent_id,
-            totalAmount: payment_intent.amount,
+            totalAmount: payment_intent.amount / 100,
             status: 'Completed'
         }
     }
 
-
-    const order = await orderService.processOrderAndPayment(paymentInfo , orderInfo)
+    
+    await orderService.processOrderAndPayment(paymentInfo , orderInfo)
+    
     sendResponse(res , {
         success:true ,
         statusCode: httpStatus.OK ,
-        data:order,
+        data:{
+            order:orderInfo,
+            payment:paymentInfo
+        },
         message:'order created successfully'
     })
 
@@ -89,8 +88,9 @@ const confirmCODOrder = catchAsync(async (req: Request, res: Response) => {
     const userId = req.user.userId
     const {orderList,shippingAddress} = req.body
     const totalAmount = orderList.reduce((acc:number, order : TOrderProduct) =>Math.floor( order.price * order.quantity) + acc , 0 )
-
+    
     const TXN  = generateManualTxId(userId)
+    
     const paymentInfo: Payment = {
         userId,
         transactionId: TXN,
@@ -119,6 +119,7 @@ const confirmCODOrder = catchAsync(async (req: Request, res: Response) => {
 
 
     const order = await orderService.processOrderAndPayment(paymentInfo , orderInfo)
+
     sendResponse(res , {
         success:true ,
         statusCode: httpStatus.OK ,

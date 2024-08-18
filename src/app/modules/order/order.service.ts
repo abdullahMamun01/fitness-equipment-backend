@@ -6,8 +6,9 @@ import { Payment } from "../payment/payment.interface";
 import mongoose from "mongoose";
 import { paymentService } from "../payment/pyment.service";
 import ProductModel from "../product/product.model";
+import { ClientSession } from "mongoose";
 
-const updateProductQuantity = async (orderList: TOrderProduct[]) => {
+const updateProductQuantity = async (orderList: TOrderProduct[], session: ClientSession) => {
 
     const update = orderList.map(order => ({
         updateOne: {
@@ -17,41 +18,42 @@ const updateProductQuantity = async (orderList: TOrderProduct[]) => {
         }
     }))
 
-    const updateProduct = await ProductModel.bulkWrite(update)
+    const updateProduct = await ProductModel.bulkWrite(update, { session })
     return updateProduct
-
 }
 
 
-const saveOrderToDB = async (payload: TOrder) => {
+const saveOrderToDB = async (payload: TOrder, session: ClientSession) => {
+    
     const existingOrder = await OrderModel.findOne({ userId: payload.userId, 'paymentInfo.transactionId': payload.paymentInfo.transactionId })
     if (existingOrder) {
-        throw new AppError(httpStatus.BAD_REQUEST, 'You have already requested to order these products');
+        
+        throw new AppError(httpStatus.BAD_REQUEST, 'You have already requested to order this products');
     }
-    const newOrder = new OrderModel(payload);
+    const newOrder = await OrderModel.create([payload], { session });
 
-    await newOrder.save();
     return newOrder;
 }
 
-
-// const bulkProductQuantityUpdate =  (productList :TOrderProduct[] )
-
-
 const processOrderAndPayment = async (paymentPayload: Payment, orderPayload: TOrder) => {
-    const session = await mongoose.startSession()
-    try {
-        await paymentService.saveStipePaymentToDB(paymentPayload)
-        await updateProductQuantity(orderPayload.products)
-        await saveOrderToDB(orderPayload)
-        await session.commitTransaction()
-        await session.endSession()
-    } catch (error) {
-        await session.abortTransaction()
-        await session.endSession()
-    }
+    const session = await mongoose.startSession();
+    session.startTransaction(); // Start the transaction
 
-}
+    try {
+        await saveOrderToDB(orderPayload, session);
+        await paymentService.saveStipePaymentToDB(paymentPayload, session);
+        await updateProductQuantity(orderPayload.products, session); // Ensure session is passed
+
+        await session.commitTransaction(); // Commit the transaction
+    } catch (error) {
+        await session.abortTransaction(); // Abort the transaction on error
+        const err = error as Error
+        throw new AppError(httpStatus.FORBIDDEN,  err.message);
+    } finally {
+        session.endSession(); // End the session
+    }
+};
+
 
 const getSingleOrderListFromDB = async (userId: string) => {
     const orderList = await OrderModel.find({ _id: userId })

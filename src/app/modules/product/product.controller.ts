@@ -3,6 +3,7 @@ import { catchAsync } from "../../utils/catchAsync";
 import { productService } from "./product.service";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
+
 /* 
 
 api/products?page=3&limit=10
@@ -10,24 +11,31 @@ api/products?page=3&limit=10
 
 // 
 const getAllProduct = catchAsync(async (req: Request, res: Response) => {
-    const { page, limit, search, category, min, max } = req.query
+    const { page, limit, search, category, min, max, order } = req.query;
+
     const categoryArray = typeof category === 'string' ? category.split('|') : [];
+    const sortingPrice = typeof order === 'string' && (req.query.order === 'asc' || req.query.order === 'desc')
+  ? req.query.order
+  : 'asc';
+  
     const params = {
         page: parseInt(page as string, 10) || undefined,
         limit: parseInt(limit as string, 10) || undefined,
         search: search as string || undefined,
         min: parseFloat(min as string) || undefined,
         max: parseFloat(max as string) || undefined,
-        category: categoryArray.length > 0 ? categoryArray : undefined
+        category: categoryArray.length > 0 ? categoryArray : undefined,
+        order:sortingPrice, // Handle order parameter
     };
 
-    const productList = await productService.getAllProductFromDB(params)
+    const productList = await productService.getAllProductFromDB(params);
+    
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        data: productList
-    })
-})
+        data: productList,
+    });
+});
 
 
 const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
@@ -41,6 +49,7 @@ const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
 })
 
 const addProduct = catchAsync(async (req: Request, res: Response) => {
+    
     const productList = await productService.addProductIntoDB(req.body)
     sendResponse(res, {
         success: true,

@@ -38,4 +38,5 @@ export type TProductsParams =  {
   min?: number;
   max?: number;
   category?: string[];
+  order: string
 }

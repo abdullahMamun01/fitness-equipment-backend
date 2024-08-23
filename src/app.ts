@@ -9,19 +9,11 @@ import fileUpload from 'express-fileupload'
 
 const app: Application = express();
 
-const allowedOrigins = ['http://localhost:5173' , ];
-const options: cors.CorsOptions = {
-  origin: allowedOrigins,
-  credentials: true, // Enable if you're sending cookies or HTTP authentication
-};
-
-app.use(cors(options));
+app.use(cors());
 //parsers
 app.use(express.json());
 app.use(cookieParser());
-app.use(fileUpload({
-  useTempFiles: true
-}))
+app.use(fileUpload())
 app.use(handleEmptyResponse);
 
 

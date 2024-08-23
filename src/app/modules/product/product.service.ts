@@ -8,6 +8,7 @@ const MAX_PRICE = 1000000;
 
 //adding product into db
 const addProductIntoDB = async (payload: TProduct) => {
+
     const product = await ProductModel.create(payload);
     return product;
 };
@@ -20,19 +21,24 @@ const getAllProductFromDB = async (
         search = "",
         min = 0,
         max = MAX_PRICE,  // Arbitrary large number
-        category
-    }: TProductsParams
+        category,
+        order ='asc' // Add the order parameter
+    } :TProductsParams
 ) => {
-    if (page < 1)
+    if (page < 1) {
         throw new AppError(
             httpStatus.BAD_REQUEST,
             'Page number must be greater than or equal to 1',
         );
-    if (limit < 1)
+    }
+
+    if (limit < 1) {
         throw new AppError(
             httpStatus.BAD_REQUEST,
             'Limit must be greater than or equal to 1',
         );
+    }
+
     if (min < 0) min = 0; // Ensure min is non-negative
     if (max < min) max = min; // Ensure max is not less than min
 
@@ -48,11 +54,16 @@ const getAllProductFromDB = async (
                 { category: { $regex: lowerCaseQuery, $options: 'i' } }
             ]
         }),
-        ...( category && category.length > 0 && { category: { $in: category } })
+        ...(category && category.length > 0 && { category: { $in: category } })
     };
 
+    // Determine the sort order based on the 'order' parameter
+    const sort: { [key: string]: 1 | -1 } = order === 'asc' ? { price: 1 } : order === 'desc' ? { price: -1 } : {};
 
-    const products = await ProductModel.find(query).skip(skip).limit(limit);
+    const products = await ProductModel.find(query)
+        .sort(sort ) // Apply the sorting
+        .skip(skip)
+        .limit(limit);
 
     return products;
 };
